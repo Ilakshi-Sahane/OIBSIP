@@ -1,0 +1,325 @@
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --background-gradient-start: #0f172a;
+    --background-gradient-end: #1e1b4b;
+    --card-background: rgba(30, 41, 59, 0.75);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --input-background: rgba(15, 23, 42, 0.6);
+    --input-border: #334155;
+    --input-focus-border: #6366f1;
+    --error-background: rgba(239, 68, 68, 0.15);
+    --error-border: #ef4444;
+    --error-text: #fca5a5;
+    --result-card-bg: rgba(15, 23, 42, 0.4);
+    --result-card-active-bg: rgba(79, 70, 229, 0.15);
+    --result-card-border: rgba(255, 255, 255, 0.08);
+    --result-card-active-border: rgba(99, 102, 241, 0.4);
+    --accent-celsius: #38bdf8;
+    --accent-fahrenheit: #f43f5e;
+    --accent-kelvin: #10b981;
+    --font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    --border-radius: 16px;
+    --transition-speed: 0.25s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    color: var(--text-main);
+}
+
+.page-container {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Main Card Component */
+.temperature-converter-card {
+    width: 100%;
+    background: var(--card-background);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    padding: 36px 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Header Section */
+.converter-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.header-icon-badge {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
+}
+
+.converter-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+.converter-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Form & Input Fields */
+.converter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.temperature-input-field,
+.unit-selector-dropdown {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: var(--input-background);
+    border: 1.5px solid var(--input-border);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.temperature-input-field:focus,
+.unit-selector-dropdown:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.temperature-input-field::placeholder {
+    color: #64748b;
+}
+
+.unit-selector-dropdown option {
+    background-color: #1e293b;
+    color: var(--text-main);
+}
+
+/* Error Message Banner */
+.error-message-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background-color: var(--error-background);
+    border: 1px solid var(--error-border);
+    border-radius: 10px;
+    color: var(--error-text);
+    font-size: 0.875rem;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.error-message-container.hidden {
+    display: none;
+}
+
+.error-icon {
+    flex-shrink: 0;
+    stroke: var(--error-border);
+}
+
+.convert-button {
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.convert-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.45);
+}
+
+.convert-button:active {
+    transform: translateY(1px);
+}
+
+/* Results Display Section */
+.results-section {
+    margin-bottom: 28px;
+}
+
+.results-heading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.result-card {
+    background-color: var(--result-card-bg);
+    border: 1px solid var(--result-card-border);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.result-card.input-unit-active {
+    background-color: var(--result-card-active-bg);
+    border-color: var(--result-card-active-border);
+    transform: scale(1.02);
+}
+
+.celsius-card .result-unit-label { color: var(--accent-celsius); }
+.fahrenheit-card .result-unit-label { color: var(--accent-fahrenheit); }
+.kelvin-card .result-unit-label { color: var(--accent-kelvin); }
+
+.result-unit-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.result-value-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
+    word-break: break-all;
+}
+
+.result-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.result-symbol {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Formula Section */
+.formula-section {
+    border-top: 1px solid var(--card-border);
+    padding-top: 20px;
+}
+
+.formula-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.formula-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formula-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8125rem;
+}
+
+.formula-name {
+    color: var(--text-muted);
+}
+
+.formula-code {
+    background-color: rgba(15, 23, 42, 0.6);
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .temperature-converter-card {
+        padding: 24px 20px;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .formula-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}

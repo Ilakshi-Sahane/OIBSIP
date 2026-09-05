@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page-container">
+        <section class="temperature-converter-card">
+            <header class="converter-header">
+                <div class="header-icon-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
+                    </svg>
+                </div>
+                <h1 class="converter-title">Temperature Converter</h1>
+                <p class="converter-subtitle">Convert values between Celsius, Fahrenheit, and Kelvin in real-time</p>
+            </header>
+
+            <form class="converter-form" id="temperature-form" onsubmit="return false;">
+                <!-- Temperature Input Group -->
+                <div class="input-group">
+                    <label for="temperature-input" class="input-label">Enter Temperature</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="number" 
+                            id="temperature-input" 
+                            class="temperature-input-field" 
+                            placeholder="e.g., 25" 
+                            step="any"
+                            aria-describedby="error-message-text"
+                            autocomplete="off"
+                        >
+                    </div>
+                </div>
+
+                <!-- Unit Selector Group -->
+                <div class="input-group">
+                    <label for="unit-select" class="input-label">Select Input Unit</label>
+                    <select id="unit-select" class="unit-selector-dropdown">
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="kelvin">Kelvin (K)</option>
+                    </select>
+                </div>
+
+                <!-- Error Message Banner -->
+                <div id="error-container" class="error-message-container hidden" role="alert">
+                    <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <span id="error-message-text" class="error-message-text"></span>
+                </div>
+
+                <button type="button" id="convert-button" class="convert-button">
+                    <span>Convert Temperature</span>
+                </button>
+            </form>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <h2 class="results-heading">Converted Values</h2>
+                <div class="results-grid">
+                    <!-- Celsius Card -->
+                    <div class="result-card celsius-card" id="result-card-celsius">
+                        <span class="result-unit-label">Celsius</span>
+                        <div class="result-value-wrapper">
+                            <span id="result-celsius" class="result-value">--</span>
+                            <span class="result-symbol">°C</span>
+                        </div>
+                    </div>
+
+                    <!-- Fahrenheit Card -->
+                    <div class="result-card fahrenheit-card" id="result-card-fahrenheit">
+                        <span class="result-unit-label">Fahrenheit</span>
+                        <div class="result-value-wrapper">
+                            <span id="result-fahrenheit" class="result-value">--</span>
+                            <span class="result-symbol">°F</span>
+                        </div>
+                    </div>
+
+                    <!-- Kelvin Card -->
+                    <div class="result-card kelvin-card" id="result-card-kelvin">
+                        <span class="result-unit-label">Kelvin</span>
+                        <div class="result-value-wrapper">
+                            <span id="result-kelvin" class="result-value">--</span>
+                            <span class="result-symbol">K</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formula Guide Section -->
+            <footer class="formula-section">
+                <h3 class="formula-title">Quick Reference Formulas</h3>
+                <div class="formula-list">
+                    <div class="formula-item">
+                        <span class="formula-name">Celsius to Fahrenheit</span>
+                        <code class="formula-code">°F = (°C × 9/5) + 32</code>
+                    </div>
+                    <div class="formula-item">
+                        <span class="formula-name">Fahrenheit to Celsius</span>
+                        <code class="formula-code">°C = (°F − 32) × 5/9</code>
+                    </div>
+                    <div class="formula-item">
+                        <span class="formula-name">Celsius to Kelvin</span>
+                        <code class="formula-code">K = °C + 273.15</code>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
